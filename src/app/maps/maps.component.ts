@@ -1,31 +1,57 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit, Input } from '@angular/core';
 
-declare var google: any;
+import { Property } from 'app/property';
+import { LatLong } from 'app/LatLong';
+import { PropertyService } from 'app/property.service';
+
+declare var L;
+var map, marker;
 
 @Component({
     moduleId: module.id,
-    selector: 'maps-cmp',
+    selector: 'plb-maps',
     templateUrl: 'maps.component.html'
 })
-
 export class MapsComponent implements OnInit {
+    @Input() 
+    private id: number = 0;
+    @Input()
+    private property: Property = null;
+    
+
+    constructor(private propertyService: PropertyService) {
+    }
+
     ngOnInit() {
-        var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
-        var mapOptions = {
-          zoom: 13,
-          center: myLatlng,
-          scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
-          styles: [{"featureType":"water","stylers":[{"saturation":43},{"lightness":-11},{"hue":"#0088ff"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"hue":"#ff0000"},{"saturation":-100},{"lightness":99}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"color":"#808080"},{"lightness":54}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#ece2d9"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#ccdca1"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#767676"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#b8cb93"}]},{"featureType":"poi.park","stylers":[{"visibility":"on"}]},{"featureType":"poi.sports_complex","stylers":[{"visibility":"on"}]},{"featureType":"poi.medical","stylers":[{"visibility":"on"}]},{"featureType":"poi.business","stylers":[{"visibility":"simplified"}]}]
+        const { property } = this;
+
+        map = L.map('map',{scrollWheelZoom: false }).setView([ 
+            property.latlng || -41.3058, 
+            property.latlng || 174.82082
+        ], 18);
+
+        if(property.latlng !== undefined)
+            this.mark(property.latlng, property.address, property.price);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
+        }).addTo(map);
+            
+        map.on('click', e => this.mark({lat: e.latlng.lat, long: e.latlng.lng}));
+    }
+
+    mark(latLng: LatLong, address: string = `Lat: ${latLng.lat}, Long: ${latLng.long}`, price: number = 0){
         
-        }
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            title:"Hello World!"
-        });
-        
-        // To add the marker to the map, call setMap();
-        marker.setMap(map);
+        if(marker) marker.removeFrom(map);
+        marker = L.circleMarker([latLng.lat, latLng.long],{
+            radius: 10,
+            color: '#363636',
+            fill: true,
+            fillColor: '#00000',
+            fillOpacity: .5
+        }).bindPopup(`<strong>Price: </strong>R ${price}<br/>
+                        <strong>Address: </strong>${address}`);
+
+        marker.addTo(map);
     }
 }

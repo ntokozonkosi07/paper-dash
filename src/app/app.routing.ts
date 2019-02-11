@@ -13,7 +13,7 @@ export const AppRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full', },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'user', component: UserComponent },
-    { path: 'properties', loadChildren: './table/table.module#TableModule' },
+    { path: 'developments', loadChildren: './table/table.module#TableModule' },
     // { path: 'typography', component: TypographyComponent },
     // { path: 'icons', component: IconsComponent },
     // { path: 'maps', component: MapsComponent },

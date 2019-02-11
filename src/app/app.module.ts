@@ -27,11 +27,11 @@ import { PropertyService } from './property.service';
     DashboardComponent,
     UserComponent,
     // TableComponent,
-    TypographyComponent,
-    IconsComponent,
-    MapsComponent,
-    NotificationsComponent,
-    UpgradeComponent
+    // TypographyComponent,
+    // IconsComponent,
+    // MapsComponent,
+    // NotificationsComponent,
+    // UpgradeComponent
   ],
   imports: [
     BrowserModule,

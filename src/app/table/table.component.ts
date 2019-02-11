@@ -21,7 +21,6 @@ export class TableComponent implements OnInit{
     constructor(private propertyService: PropertyService) {this.properties = [];}
     
     ngOnInit(){
-        debugger;
         this.fields = ['erf','street'];
         this.properties = this.propertyService.properties;
     }

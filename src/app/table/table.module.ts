@@ -9,6 +9,7 @@ import { PropertyService } from "app/property.service";
 import { DetailsComponent } from "app/details/details.component";
 import { FormsModule } from "@angular/forms";
 import { GalleryModule } from "app/gallery/gallery.module";
+import { MapsModule } from "app/maps/maps.module";
 
 const ROUTES: Routes = [
     { path: '', component: TableComponent },
@@ -21,6 +22,7 @@ const ROUTES: Routes = [
         CommonModule,
         // Ng5SliderModule,
         FormsModule,
+        MapsModule,
         // GalleryModule,
         ToastModule.forRoot(),
         RouterModule.forChild(ROUTES)
