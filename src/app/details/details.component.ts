@@ -60,13 +60,16 @@ export class DetailsComponent implements OnInit {
     }
 
     save(){
-        debugger;
-        this.submitted = true;
+        try{
+            this.submitted = true;
 
-        
+            if(this.addressForm.invalid)
+                throw new Error('Please check the required fields!')
 
-        if(this.addressForm.invalid)
-            this.toastr.warning('Please check the required fields!');
+            this.jumpToStep(++this.step);
+        } catch(e){
+            this.toastr.warning(e.message);
+        }
     }
 
     getAddress(latlong: LatLong){

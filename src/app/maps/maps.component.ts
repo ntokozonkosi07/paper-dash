@@ -29,7 +29,7 @@ export class MapsComponent implements OnInit {
     ngOnInit() {
         const { property } = this;
 
-        map = L.map('map',{scrollWheelZoom: true }).setView([ 
+        map = L.map('map',{scrollWheelZoom: false }).setView([ 
             property.latlng || -41.3058, 
             property.latlng || 174.82082
         ], 18);
