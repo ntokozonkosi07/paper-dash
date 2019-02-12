@@ -3,7 +3,7 @@
       <div class="panel-body">
   
         <div class="stepper">
-          <ul class="nav nav-tabs" role="tablist">
+          <ul class="nav nav-tabs" style="border-bottom: 0 solid" role="tablist">
             <li role="presentation" [ngClass]="{'active': step === 0, 'disabled': step !== 0}" (click)="jumpToStep(0)">
               <a class="persistant-disabled" href="#stepper-step-1" data-toggle="tab" aria-controls="stepper-step-1" role="tab" title="Step 1">
                 <span class="round-tab">1</span>
@@ -27,44 +27,80 @@
           </ul>
           <form role="form">
             <div class="tab-content">
-              <div class="tab-pane fade in" [class.active]="step===0" role="tabpanel" id="stepper-step-1">
-                <plb-maps [id]="id" [property]="property" ></plb-maps>
+              <div class="tab-pane fade in" style="padding-top: 0px" [class.active]="step===0" role="tabpanel" id="stepper-step-1">
+                <div class="content">
+                    <label>Plot location on the map</label>
+                    <plb-maps [id]="id" (mapClick)="mapClick($event)" [property]="property" ></plb-maps>
+                    <form [formGroup]="addressForm" (ngSubmit)="save()">    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <textarea 
+                                        rows="3" 
+                                        [(ngModel)]="property.address"
+                                        [ngClass]="{'control-label': addressForm.get('address').touched && ( addressForm.hasError('required',['address']) || addressForm.hasError('minlength',['address']))}" 
+                                        formControlName="address" 
+                                        class="form-control border-input" 
+                                        placeholder="Address here..." ></textarea>
+                                    
+                                    <div *ngIf="addressForm.get('address').touched || submitted" style="margin-top: 5px">
+                                        <span class="alert alert-danger col-md-12" *ngIf="addressForm.hasError('required',['address'])">
+                                            This fields is required!
+                                        </span>
+                                        <span class="alert alert-danger col-md-12" *ngIf="addressForm.hasError('minlength',['address'])">
+                                            Minimun length is 3!
+                                        </span>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <ul class="list-inline pull-right">
+                                <li>
+                                    <input class="btn btn-primary next-step" value="Next" type="submit">
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+              </div>
+              <div class="tab-pane fade" [class.in]="step===1" [class.active]="step===1" role="tabpanel" id="stepper-step-2">
+                <h3 class >2. Enter Payment Information</h3>
+                <p>This is step 2</p>
                 <ul class="list-inline pull-right">
+                  <li>
+                    <a class="btn btn-default prev-step" (click)="jumpToStep(step+1)">Back</a>
+                  </li>
                   <li>
                     <a class="btn btn-primary next-step" (click)="jumpToStep(step+1)">Next</a>
                   </li>
                 </ul>
               </div>
-              <div class="tab-pane fade" [class.active]="step===1" role="tabpanel" id="stepper-step-2">
-                <h3 class >2. Enter Payment Information</h3>
-                <p>This is step 2</p>
-                <ul class="list-inline pull-right">
-                  <li>
-                    <a class="btn btn-default prev-step">Back</a>
-                  </li>
-                  <li>
-                    <a class="btn btn-primary next-step">Next</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="tab-pane fade" [class.active]="step===2" role="tabpanel" id="stepper-step-3">
+              <div class="tab-pane fade" [class.in]="step===2" [class.active]="step===2" role="tabpanel" id="stepper-step-3">
                 <h3 class="hs">3. Review and Submit Payment</h3>
                 <p>This is step 3</p>
                 <ul class="list-inline pull-right">
                   <li>
-                    <a class="btn btn-default prev-step">Back</a>
+                    <a class="btn btn-default prev-step" (click)="jumpToStep(step-1)">Back</a>
                   </li>
                   <li>
-                    <a class="btn btn-default cancel-stepper">Cancel Payment</a>
+                    <a class="btn btn-default cancel-stepper">Cancel</a>
                   </li>
                   <li>
-                    <a class="btn btn-primary next-step">Submit Payment</a>
+                    <a class="btn btn-primary next-step" (click)="jumpToStep(step+1)">Next</a>
                   </li>
                 </ul>
               </div>
-              <div class="tab-pane fade" [class.active]="step===3" role="tabpanel" id="stepper-step-4">
+              <div class="tab-pane fade" [class.in]="step===3" [class.active]="step===3" role="tabpanel" id="stepper-step-4">
                 <h3>4. All done!</h3>
                 <p>You have successfully completed all steps.</p>
+
+                <ul class="list-inline pull-right">
+                    <li>
+                      <a class="btn btn-primary next-step" (click)="jumpToStep(step+1)">Confirm</a>
+                    </li>
+                  </ul>
               </div>
             </div>
           </form>

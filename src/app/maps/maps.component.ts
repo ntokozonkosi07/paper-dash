@@ -1,8 +1,9 @@
-import { Component,OnInit, Input } from '@angular/core';
+import { Component,OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Property } from 'app/property';
 import { LatLong } from 'app/LatLong';
 import { PropertyService } from 'app/property.service';
+import { DetailService } from 'app/details/details.service';
 
 declare var L;
 var map, marker;
@@ -10,22 +11,25 @@ var map, marker;
 @Component({
     moduleId: module.id,
     selector: 'plb-maps',
-    templateUrl: 'maps.component.html'
+    templateUrl: 'maps.component.html',
+    providers: [ DetailService ]
 })
 export class MapsComponent implements OnInit {
     @Input() 
-    private id: number = 0;
+    id: number = 0;
     @Input()
-    private property: Property = null;
+    property: Property = null;
+    @Output()
+    mapClick = new EventEmitter();
     
 
-    constructor(private propertyService: PropertyService) {
+    constructor(private propertyService: PropertyService, private detailService: DetailService) {
     }
 
     ngOnInit() {
         const { property } = this;
 
-        map = L.map('map',{scrollWheelZoom: false }).setView([ 
+        map = L.map('map',{scrollWheelZoom: true }).setView([ 
             property.latlng || -41.3058, 
             property.latlng || 174.82082
         ], 18);
@@ -41,7 +45,8 @@ export class MapsComponent implements OnInit {
     }
 
     mark(latLng: LatLong, address: string = `Lat: ${latLng.lat}, Long: ${latLng.long}`, price: number = 0){
-        
+        this.mapClick.emit(latLng as LatLong);
+
         if(marker) marker.removeFrom(map);
         marker = L.circleMarker([latLng.lat, latLng.long],{
             radius: 10,
