@@ -64,7 +64,7 @@ export class DetailsComponent implements OnInit {
             this.submitted = true;
 
             if(this.addressForm.invalid)
-                throw new Error('Please check the required fields!')
+                throw new Error('Please check the fields for potential mistakes!')
 
             this.jumpToStep(++this.step);
         } catch(e){
