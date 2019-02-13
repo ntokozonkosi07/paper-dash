@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Options } from 'ng5-slider';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 
@@ -23,7 +22,7 @@ export class DevelopmentsComponent implements OnInit {
     //property id
     public id: number;
     // steppers tracker
-    public step: number = 0;
+    public step: number = 1;
 
     // state
     public property: Property;
