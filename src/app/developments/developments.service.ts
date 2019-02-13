@@ -4,7 +4,7 @@ import { LatLong } from "app/LatLong";
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class DetailService {
+export class DevelopmentsService {
 
     constructor(private http: HttpClient) {}
 

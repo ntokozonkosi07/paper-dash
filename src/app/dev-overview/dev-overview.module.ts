@@ -5,9 +5,9 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { NgxLoadingModule } from 'ngx-loading';
 
-import { TableComponent } from "./table.component";
+import { DevOverviewComponent } from "./dev-overview.component";
 import { PropertyService } from "app/property.service";
-import { DetailsComponent } from "app/details/details.component";
+import { DevelopmentsComponent } from '../developments/developments.component'
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { GalleryModule } from "app/gallery/gallery.module";
 import { MapsModule } from "app/maps/maps.module";
@@ -15,9 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 const ROUTES: Routes = [
-    { path: '', component: TableComponent },
-    { path: 'details', component: DetailsComponent},
-    { path: 'details/:id', component: DetailsComponent}
+    { path: '', component: DevOverviewComponent },
+    // { path: '', component: DevelopmentsComponent},
+    { path: '/:id', component: DevelopmentsComponent}
 ];
 
 @NgModule({
@@ -33,8 +33,8 @@ const ROUTES: Routes = [
         ToastModule.forRoot(),
         RouterModule.forChild(ROUTES)
     ],
-    declarations: [ TableComponent, DetailsComponent ],
+    declarations: [ DevOverviewComponent, DevelopmentsComponent ],
     providers: [ PropertyService ],
-    exports: [ TableComponent, DetailsComponent ]
+    exports: [ DevOverviewComponent, DevelopmentsComponent ]
 })
-export class TableModule {}
+export class DevOverviewModule {}

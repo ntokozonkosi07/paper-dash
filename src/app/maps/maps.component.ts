@@ -3,7 +3,6 @@ import { Component,OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Property } from 'app/property';
 import { LatLong } from 'app/LatLong';
 import { PropertyService } from 'app/property.service';
-import { DetailService } from 'app/details/details.service';
 
 declare var L;
 var map, marker;
@@ -11,8 +10,7 @@ var map, marker;
 @Component({
     moduleId: module.id,
     selector: 'plb-maps',
-    templateUrl: 'maps.component.html',
-    providers: [ DetailService ]
+    templateUrl: 'maps.component.html'
 })
 export class MapsComponent implements OnInit {
     @Input() 
@@ -23,7 +21,7 @@ export class MapsComponent implements OnInit {
     mapClick = new EventEmitter();
     
 
-    constructor(private propertyService: PropertyService, private detailService: DetailService) {
+    constructor(private propertyService: PropertyService) {
     }
 
     ngOnInit() {

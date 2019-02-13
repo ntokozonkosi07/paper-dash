@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import * as $ from 'jquery';
 
-declare var $:any;
+// declare var $:any;
 
 @Component({
     selector: 'dashboard-cmp',

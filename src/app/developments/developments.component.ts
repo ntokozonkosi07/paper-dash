@@ -2,22 +2,23 @@ import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Options } from 'ng5-slider';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as $ from 'jquery';
 
 import { Property } from "app/property";
 import { PropertyService } from "app/property.service";
 import { ToastsManager } from "ng2-toastr/ng2-toastr";
 import { LatLong } from "app/LatLong";
-import { DetailService } from "./details.service";
+import { DevelopmentsService } from "./developments.service";
 
-declare var $:any;
+// declare var $:any;
 
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
-    templateUrl: 'details.component.html',
-    providers: [ DetailService ]
+    templateUrl: 'developments.component.html',
+    providers: [ DevelopmentsService ]
 })
-export class DetailsComponent implements OnInit {
+export class DevelopmentsComponent implements OnInit {
 
     //property id
     public id: number;
@@ -37,7 +38,7 @@ export class DetailsComponent implements OnInit {
         public toastr: ToastsManager,
         vcr: ViewContainerRef,
         private router: Router,
-        private detailService: DetailService,
+        private developmentService: DevelopmentsService,
         private formBuilder: FormBuilder) { 
             this.toastr.setRootViewContainerRef(vcr);
             this.property = {price: 0} as Property;
@@ -74,7 +75,7 @@ export class DetailsComponent implements OnInit {
 
     getAddress(latlong: LatLong){
         this.loading = true;
-        this.detailService.reverseGeocode(latlong)
+        this.developmentService.reverseGeocode(latlong)
             .subscribe((res:any) => {
                 this.loading = false;
                 const { adminArea1, adminArea3, adminArea5, postalCode, street } = res.results[0].locations[0];

@@ -11,10 +11,10 @@ declare interface TableData {
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
-    templateUrl: 'table.component.html'
+    templateUrl: 'dev-overview.component.html'
 })
 
-export class TableComponent implements OnInit{
+export class DevOverviewComponent implements OnInit{
     public properties: Property[];
     public fields: any [];
 
