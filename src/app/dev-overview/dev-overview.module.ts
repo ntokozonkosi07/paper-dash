@@ -11,7 +11,6 @@ import { PropertyService } from "app/property.service";
 import { DevelopmentsComponent } from './developments/developments.component'
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SchemesComponent } from './developments/schemes.component';
-import { SliderModule } from '../slider/slider.module';
 
 const ROUTES: Routes = [
     { path: '', component: DevOverviewComponent },
@@ -27,7 +26,6 @@ const ROUTES: Routes = [
         MapsModule,
         HttpClientModule,
         // GalleryModule,
-        SliderModule,
         NgxLoadingModule.forRoot({}),
         ToastModule.forRoot(),
         RouterModule.forChild(ROUTES)

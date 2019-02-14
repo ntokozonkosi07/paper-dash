@@ -34,4 +34,8 @@ export class SchemesComponent implements OnInit {
         });
     } 
 
+    change(){
+        debugger;
+    }
+
 }

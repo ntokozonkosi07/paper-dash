@@ -9,7 +9,7 @@ export class Scheme {
         public lounge: number,
         public office: number,
         public price: number,
-        public garages: number,
+        public garage: number,
         public carport: number,
         public address: string,
         public description: string,
