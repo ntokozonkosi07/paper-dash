@@ -1,5 +1,7 @@
-export class Scheme {
-    constructor(
+import { SchemeMeta } from "./scheme-meta.model";
+
+export class Scheme extends SchemeMeta{
+    constructor(        
         public id: number,
         public propertyType: number,
         public size: number,
@@ -13,5 +15,8 @@ export class Scheme {
         public carport: number,
         public address: string,
         public description: string,
-    ) { }
+    ) { 
+        super(true);
+    }
+    
 }

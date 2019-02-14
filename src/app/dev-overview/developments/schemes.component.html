@@ -2,155 +2,26 @@
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
             <!-- repeat the following div container -->
+            <div class="row">
+                <div class="col-md-12" style="padding-bottom: 5px;">
+                    <button class="btn btn-default pull-right" (click)="newScheme()">New</button>
+                </div>
+            </div>
             <div class="panel panel-default" *ngFor="let scheme of schemes; let i = index">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                             <span class="glyphicon glyphicon-file"> </span>
-                            Scheme 1
+                            Scheme {{ i + 1 }}
                         </a>
                     </h4>
                 </div>
-                <div id="collapseOne" class="panel-collapse collapse in">
+                <div id="collapseOne" class="panel-collapse collapse" [ngClass]="{in: scheme.expanded }">
                     <div class="panel-body">
                         <div class="col-lg-12 col-md-12">
-                                <div class="content">
-                                    <form [formGroup]="schemeForm">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Address</label>
-                                                    <input type="text" 
-                                                        disabled
-                                                        class="form-control border-input" 
-                                                        placeholder="Address" 
-                                                        name="address"
-                                                        formControlName="address"
-                                                        [(ngModel)]="scheme.address">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Property Type</label>
-                                                    <input type="text" 
-                                                        class="form-control border-input" 
-                                                        placeholder="Property Type" 
-                                                        name="propertyType"
-                                                        formControlName="propertyType"
-                                                        [(ngModel)]="scheme.propertyType">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>ERF Number</label>
-                                                    <input type="number" 
-                                                        class="form-control border-input" 
-                                                        placeholder="ERF Number"
-                                                        name="erf"
-                                                        formControlName="erf"
-                                                        [(ngModel)]="scheme.erf">
-                                                </div>
-                                            </div>
-                                        </div>
-            
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Bedroom</label>
-                                                    <input type="number" 
-                                                        class="form-control border-input" 
-                                                        placeholder="Number of bedrooms" 
-                                                        name="bedroom"
-                                                        formControlName="bedroom"
-                                                        [(ngModel)]="scheme.bedroom">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Kitchen</label>
-                                                    <input type="number" 
-                                                        class="form-control border-input" 
-                                                        placeholder="Number of Kitchens" 
-                                                        name="kitchen"
-                                                        formControlName="kitchen"
-                                                        [(ngModel)]="scheme.kitchen">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Lounge</label>
-                                                    <input type="number" 
-                                                        class="form-control border-input" 
-                                                        placeholder="Number of Kitchens" 
-                                                        name="lounge"
-                                                        formControlName="lounge"
-                                                        [(ngModel)]="scheme.lounge">
-                                                </div>
-                                            </div>
-                                        </div>
-            
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Office / Study Room</label>
-                                                    <input type="number" 
-                                                        class="form-control border-input" 
-                                                        placeholder="Number of Kitchens" 
-                                                        name="office"
-                                                        formControlName="office"
-                                                        [(ngModel)]="scheme.office">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Garage</label>
-                                                    <input type="number" 
-                                                        class="form-control border-input" 
-                                                        placeholder="Number of Garages" 
-                                                        name="garage"
-                                                        formControlName="garage"
-                                                        [(ngModel)]="scheme.garage">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Carport</label>
-                                                    <input type="number" 
-                                                        class="form-control border-input" 
-                                                        placeholder="Number of Carports" 
-                                                        name="carport"
-                                                        formControlName="carport"
-                                                        [(ngModel)]="scheme.carport">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Price</label>
-                                                    ...slider right here...
-                                                </div>
-                                            </div>
-                                        </div>
-            
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea rows="5" 
-                                                        class="form-control border-input" 
-                                                        placeholder="Scheme Scription" 
-                                                        name="description"
-                                                        formControlName="description"
-                                                        [(ngModel)]="scheme.description">
-                                                    </textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            
+                            <div class="content">
+                                <plb-scheme [scheme]="scheme"></plb-scheme>
+                            </div>                            
                         </div>
                     </div>
                 </div>

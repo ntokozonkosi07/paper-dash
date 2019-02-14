@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 import { Scheme } from "./scheme.model";
 
@@ -10,32 +10,17 @@ import { Scheme } from "./scheme.model";
 })
 export class SchemesComponent implements OnInit {
     
-    schemeForm: FormGroup;
     schemes: Scheme[];
-    
-    constructor(
-        private formBuilder: FormBuilder
-    ) {
+
+    constructor() { 
         this.schemes = [new Scheme(1,1,112,4124,2,1,1,1,15000000,2,2,"6 Invicta road, midrand, 1682","Enter each item on a new line, choose the amount of groups unders settings, and click the button to generate your randomized list. Don't like the first team? Just click again until you do.")];
     }
 
-    ngOnInit(): void {
-        this.schemeForm = this.formBuilder.group({
-            address: ['', [ Validators.required, Validators.minLength(3)]],
-            propertyType: ['', [ Validators.required ]],
-            erf: ['', [ Validators.required ]],
-            bedroom: ['', [ Validators.required ]],
-            kitchen: ['', [ Validators.required ]],
-            lounge: ['', [ Validators.required ]],
-            office: ['', [ Validators.required ]],
-            garage: ['', [ Validators.required ]],
-            carport: ['', [ Validators.required ]],
-            description: ['', [ Validators.required ]]
-        });
-    } 
+    ngOnInit(): void { } 
 
-    change(){
-        debugger;
+    newScheme(){
+        if(this.schemes.length > 0)
+            this.schemes.push({ price: 0} as Scheme);
+        this.schemes.push({ price: 0, expanded: true } as Scheme);
     }
-
 }

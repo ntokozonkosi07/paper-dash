@@ -1,0 +1,188 @@
+<form [formGroup]="schemeForm">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('address').touched && schemeForm.hasError('required', ['address'])}">
+                <label>Address</label>
+                <input type="text" 
+                    disabled
+                    class="form-control border-input" 
+                    placeholder="Address" 
+                    name="address"
+                    formControlName="address"
+                    [(ngModel)]="scheme.address">
+            </div>
+            <plb-validation-msg 
+                [touched]="schemeForm.get('address').touched" 
+                [validation]="schemeForm.hasError('required', ['address'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+        </div>
+        <div class="col-md-4" ng>
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('propertyType').touched && schemeForm.hasError('required', ['propertyType'])}">
+                <label class="control-label">Property Type</label>
+                <input type="text" 
+                    class="form-control border-input" 
+                    placeholder="Property Type" 
+                    name="propertyType"
+                    formControlName="propertyType"
+                    [(ngModel)]="scheme.propertyType">
+            </div>
+
+            <plb-validation-msg 
+                [touched]="schemeForm.get('propertyType').touched" 
+                [validation]="schemeForm.hasError('required', ['propertyType'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+            
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('erf').touched && schemeForm.hasError('required', ['erf'])}">
+                <label>ERF Number</label>
+                <input type="number" 
+                    class="form-control border-input" 
+                    placeholder="ERF Number"
+                    name="erf"
+                    formControlName="erf"
+                    [(ngModel)]="scheme.erf">
+            </div>
+
+            <plb-validation-msg 
+                [touched]="schemeForm.get('erf').touched" 
+                [validation]="schemeForm.hasError('required', ['erf'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('erf').touched && schemeForm.hasError('required', ['bedroom'])}">
+                <label>Bedroom</label>
+                <input type="number" 
+                    class="form-control border-input" 
+                    placeholder="Number of bedrooms" 
+                    name="bedroom"
+                    formControlName="bedroom"
+                    [(ngModel)]="scheme.bedroom">
+            </div>
+
+            <plb-validation-msg 
+                [touched]="schemeForm.get('bedroom').touched" 
+                [validation]="schemeForm.hasError('required', ['bedroom'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('erf').touched && schemeForm.hasError('required', ['kitchen'])}">
+                <label>Kitchen</label>
+                <input type="number" 
+                    class="form-control border-input" 
+                    placeholder="Number of Kitchens" 
+                    name="kitchen"
+                    formControlName="kitchen"
+                    [(ngModel)]="scheme.kitchen">
+            </div>
+            <plb-validation-msg 
+                [touched]="schemeForm.get('kitchen').touched" 
+                [validation]="schemeForm.hasError('required', ['kitchen'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('lounge').touched && schemeForm.hasError('required', ['lounge'])}">
+                <label>Lounge</label>
+                <input type="number" 
+                    class="form-control border-input" 
+                    placeholder="Number of Kitchens" 
+                    name="lounge"
+                    formControlName="lounge"
+                    [(ngModel)]="scheme.lounge">
+            </div>
+            <plb-validation-msg 
+                [touched]="schemeForm.get('lounge').touched" 
+                [validation]="schemeForm.hasError('required', ['lounge'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('office').touched && schemeForm.hasError('required', ['office'])}">
+                <label>Office / Study Room</label>
+                <input type="number" 
+                    class="form-control border-input" 
+                    placeholder="Number of Kitchens" 
+                    name="office"
+                    formControlName="office"
+                    [(ngModel)]="scheme.office">
+            </div>
+            <plb-validation-msg 
+                [touched]="schemeForm.get('office').touched" 
+                [validation]="schemeForm.hasError('required', ['office'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('garage').touched && schemeForm.hasError('required', ['garage'])}">
+                <label>Garage</label>
+                <input type="number" 
+                    class="form-control border-input" 
+                    placeholder="Number of Garages" 
+                    name="garage"
+                    formControlName="garage"
+                    [(ngModel)]="scheme.garage">
+            </div>
+            <plb-validation-msg 
+                [touched]="schemeForm.get('garage').touched" 
+                [validation]="schemeForm.hasError('required', ['garage'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('carport').touched && schemeForm.hasError('required', ['carport'])}">
+                <label>Carport</label>
+                <input type="number" 
+                    class="form-control border-input" 
+                    placeholder="Number of Carports" 
+                    name="carport"
+                    formControlName="carport"
+                    [(ngModel)]="scheme.carport">
+            </div>
+            <plb-validation-msg 
+                [touched]="schemeForm.get('carport').touched" 
+                [validation]="schemeForm.hasError('required', ['carport'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Price</label>
+                ...slider right here...
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" [ngClass]="{'has-error': schemeForm.get('description').touched && schemeForm.hasError('required', ['description'])}">
+                <label>Description</label>
+                <textarea rows="5" 
+                    class="form-control border-input" 
+                    placeholder="Scheme Scription" 
+                    name="description"
+                    formControlName="description"
+                    [(ngModel)]="scheme.description">
+                </textarea>
+            </div>
+            <plb-validation-msg 
+                [touched]="schemeForm.get('description').touched" 
+                [validation]="schemeForm.hasError('required', ['description'])"
+                [message]="'This field is required!'">
+            </plb-validation-msg>
+        </div>
+    </div>
+</form>
