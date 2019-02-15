@@ -77,6 +77,20 @@ export class DevelopmentsComponent implements OnInit {
         }
     }
 
+    validateSchemes(){
+        try{
+            debugger;
+            this.development.schemes.forEach(s => {
+                if(!s.valid)
+                    throw new Error('Please check the incomplete schemes!')
+            })
+
+            this.jumpToStep(++this.step);
+        } catch(e){
+            this.toastr.warning(e.message);
+        }
+    }
+
     getAddress(latlong: LatLong){
         // this.loading = true;
         this.developmentService.reverseGeocode(latlong)
