@@ -15,7 +15,7 @@ var map, marker;
 })
 export class MapsComponent implements OnInit {
     @Input() 
-    id: number = 0;
+    id: number = 2;
     @Input()
     development: Development = null;
     @Output()
@@ -28,7 +28,7 @@ export class MapsComponent implements OnInit {
     ngOnInit() {
         const { development } = this;
         
-        map = L.map('map',{scrollWheelZoom: true }).setView([ 
+        map = L.map('map',{scrollWheelZoom: false }).setView([ 
             development.latLong !== null ? development.latLong.lat : -41.3058, 
             development.latLong !== null ? development.latLong.long : 174.82082
         ], 18);

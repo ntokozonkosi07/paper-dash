@@ -3325,7 +3325,7 @@ Copyright (c) 2015 Daniel Eden
   position: relative; }
 
 .stepper .nav-tabs > li {
-  width: 25%;
+  width: 33%;
   position: relative; }
   .stepper .nav-tabs > li:after {
     content: '';

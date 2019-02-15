@@ -4,27 +4,27 @@
       <div class="panel-body">
   
         <div class="stepper">
-          <ul class="nav nav-tabs" style="border-bottom: 0 solid" role="tablist">
-            <li role="presentation" [ngClass]="{'active': step === 0, 'disabled': step !== 0}" (click)="jumpToStep(0)">
+          <ul class="nav nav-tabs justify-content-center" style="border-bottom: 0 solid" role="tablist">
+            <li role="presentation" [ngClass]="{'active': step === 0, 'disabled': step !== 0}" (click)="jumpToStep(0)" >
               <a class="persistant-disabled" href="#stepper-step-1" data-toggle="tab" aria-controls="stepper-step-1" role="tab" title="Step 1">
                 <span class="round-tab">1</span>
               </a>
             </li>
-            <li role="presentation" [ngClass]="{'active': step === 1, 'disabled': step !== 1}" (click)="jumpToStep(1)">
+            <li role="presentation" [ngClass]="{'active': step === 1, 'disabled': step !== 1}" (click)="jumpToStep(1)" >
               <a class="persistant-disabled" href="#stepper-step-2" data-toggle="tab" aria-controls="stepper-step-2" role="tab" title="Step 2">
                 <span class="round-tab">2</span>
               </a>
             </li>
-            <li role="presentation" [ngClass]="{'active': step === 2, 'disabled': step !== 2}" (click)="jumpToStep(2)">
+            <li role="presentation" [ngClass]="{'active': step === 2, 'disabled': step !== 2}" (click)="jumpToStep(2)" >
               <a class="persistant-disabled" href="#stepper-step-3" data-toggle="tab" aria-controls="stepper-step-3" role="tab" title="Step 3">
                 <span class="round-tab">3</span>
               </a>
             </li>
-            <li role="presentation" [ngClass]="{'active': step === 3, 'disabled': step !== 3}" (click)="jumpToStep(3)">
+            <!-- <li role="presentation" [ngClass]="{'active': step === 3, 'disabled': step !== 3}" (click)="jumpToStep(3)">
               <a class="persistant-disabled" href="#stepper-step-4" data-toggle="tab" aria-controls="stepper-step-4" role="tab" title="Complete">
                 <span class="round-tab">4</span>
               </a>
-            </li>
+            </li> -->
           </ul>
           <form role="form">
             <div class="tab-content">
@@ -115,7 +115,7 @@
                   </li>
                 </ul>
               </div>
-              <div class="tab-pane fade" [class.in]="step===3" [class.active]="step===3" role="tabpanel" id="stepper-step-4">
+              <!-- <div class="tab-pane fade" [class.in]="step===3" [class.active]="step===3" role="tabpanel" id="stepper-step-4">
                 <h3>4. All done!</h3>
                 <p>You have successfully completed all steps.</p>
 
@@ -124,7 +124,7 @@
                       <a class="btn btn-primary next-step" (click)="jumpToStep(step+1)">Confirm</a>
                     </li>
                   </ul>
-              </div>
+              </div> -->
             </div>
           </form>
         </div>
