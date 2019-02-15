@@ -1,8 +1,7 @@
 <div class="">
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
     <div class="panel panel-default">
-      <div class="panel-body">
-  
+      <div class="panel-body">  
         <div class="stepper">
           <ul class="nav nav-tabs justify-content-center" style="border-bottom: 0 solid" role="tablist">
             <li role="presentation" [ngClass]="{'active': step === 0, 'disabled': step !== 0}" (click)="jumpToStep(0)" >
@@ -20,11 +19,6 @@
                 <span class="round-tab">3</span>
               </a>
             </li>
-            <!-- <li role="presentation" [ngClass]="{'active': step === 3, 'disabled': step !== 3}" (click)="jumpToStep(3)">
-              <a class="persistant-disabled" href="#stepper-step-4" data-toggle="tab" aria-controls="stepper-step-4" role="tab" title="Complete">
-                <span class="round-tab">4</span>
-              </a>
-            </li> -->
           </ul>
           <form role="form">
             <div class="tab-content">
@@ -101,8 +95,7 @@
                 </ul>
               </div>
               <div class="tab-pane fade" [class.in]="step===2" [class.active]="step===2" role="tabpanel" id="stepper-step-3">
-                <h3 class="hs">3. Review and Submit Payment</h3>
-                <p>This is step 3</p>
+                <plb-confirm-view [development]="development"></plb-confirm-view>
                 <ul class="list-inline pull-right">
                   <li>
                     <a class="btn btn-default prev-step" (click)="jumpToStep(step-1)">Back</a>
@@ -111,32 +104,13 @@
                     <a class="btn btn-default cancel-stepper">Cancel</a>
                   </li>
                   <li>
-                    <a class="btn btn-primary next-step" (click)="jumpToStep(step+1)">Next</a>
+                    <a class="btn btn-primary next-step" (click)="jumpToStep(step+1)">Confirm</a>
                   </li>
                 </ul>
               </div>
-              <!-- <div class="tab-pane fade" [class.in]="step===3" [class.active]="step===3" role="tabpanel" id="stepper-step-4">
-                <h3>4. All done!</h3>
-                <p>You have successfully completed all steps.</p>
-
-                <ul class="list-inline pull-right">
-                    <li>
-                      <a class="btn btn-primary next-step" (click)="jumpToStep(step+1)">Confirm</a>
-                    </li>
-                  </ul>
-              </div> -->
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-
-<!-- <div class="container-fluid"> -->
-    <!-- <div class="card card-map">
-        <div class="header">
-            <h4 class="title">Google Maps</h4>
-        </div> -->
-        
-    <!-- </div> -->
-<!-- </div> -->

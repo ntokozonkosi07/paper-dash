@@ -26,7 +26,7 @@ export class SchemeComponent implements OnInit {
     schemeForm: FormGroup;
     options: Options = {
         floor: 0,
-        ceil: 100000
+        ceil: 1000000
       };
 
     constructor(

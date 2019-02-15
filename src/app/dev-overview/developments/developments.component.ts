@@ -25,7 +25,7 @@ export class DevelopmentsComponent implements OnInit {
     //property id
     // public id: number;
     // steppers tracker
-    public step: number = 0;
+    public step: number = 2;
 
     addressForm: FormGroup;
     submitted: Boolean = false;
@@ -51,7 +51,12 @@ export class DevelopmentsComponent implements OnInit {
             address: ['', [Validators.required, Validators.minLength(3)]]
         });
 
-        this.development = new Development(uuid.v4(),'','',null,[] as Scheme[]);
+        this.development = new Development(uuid.v4(),'Polo Fields','NZ, Wellington, Wellington, 6011, Revans Street',
+            new LatLong('50','50'),[
+                new Scheme(uuid.v4(),1,104,778545,3,1,1,0,400000,1,1,'NZ, Wellington, Wellington, 6011, Revans Street','very cozy 3 bedrooom'),
+                new Scheme(uuid.v4(),1,104,778545,2,1,1,0,500000,1,1,'NZ, Wellington, Wellington, 6011, Revans Street','very cozy 2 bedrooom'),
+                new Scheme(uuid.v4(),2,104,778545,1,1,1,0,700000,1,1,'NZ, Wellington, Wellington, 6011, Revans Street','very cozy 1 bedrooom')
+            ]);
     }
 
     jumpToStep = (step: number) => {
@@ -79,7 +84,9 @@ export class DevelopmentsComponent implements OnInit {
 
     validateSchemes(){
         try{
-            debugger;
+            if(this.development.schemes.length === 0)
+                throw new Error('Please add a scheme to a development!');
+
             this.development.schemes.forEach(s => {
                 if(!s.valid)
                     throw new Error('Please check the incomplete schemes!')

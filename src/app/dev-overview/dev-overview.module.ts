@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SchemesComponent } from './developments/schemes.component';
 import { SchemeComponent } from './developments/scheme.component';
 import { ValidationMsgComponent } from "./developments/validation-msg.component";
+import { DevConfirmComponent } from "./developments/dev-confirm.component";
 
 const ROUTES: Routes = [
     { path: '', component: DevOverviewComponent },
@@ -34,8 +35,8 @@ const ROUTES: Routes = [
         ToastModule.forRoot(),
         RouterModule.forChild(ROUTES)
     ],
-    declarations: [ DevOverviewComponent, DevelopmentsComponent, SchemesComponent, SchemeComponent, ValidationMsgComponent ],
+    declarations: [ DevOverviewComponent, DevelopmentsComponent, SchemesComponent, SchemeComponent, ValidationMsgComponent, DevConfirmComponent ],
     providers: [ PropertyService ],
-    exports: [ DevOverviewComponent, DevelopmentsComponent, SchemesComponent,ValidationMsgComponent ]
+    exports: [ DevOverviewComponent, DevelopmentsComponent, SchemesComponent,ValidationMsgComponent, DevConfirmComponent ]
 })
 export class DevOverviewModule {}
