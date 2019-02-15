@@ -5,6 +5,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MapsModule } from "app/maps/maps.module";
 import { HttpClientModule } from '@angular/common/http';
+import { Ng5SliderModule } from 'ng5-slider';
 
 import { DevOverviewComponent } from "./dev-overview.component";
 import { PropertyService } from "app/property.service";
@@ -27,6 +28,7 @@ const ROUTES: Routes = [
         ReactiveFormsModule,
         MapsModule,
         HttpClientModule,
+        Ng5SliderModule,
         // GalleryModule,
         NgxLoadingModule.forRoot({}),
         ToastModule.forRoot(),

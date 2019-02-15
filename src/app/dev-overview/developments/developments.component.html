@@ -31,7 +31,7 @@
               <div class="tab-pane fade in" style="padding-top: 0px" [class.active]="step===0" role="tabpanel" id="stepper-step-1">
                 <div class="content">
                     <label>Plot location on the map</label>
-                    <plb-maps [id]="id" (mapClick)="mapClick($event)" [property]="property" ></plb-maps>
+                    <plb-maps [id]="id" (mapClick)="mapClick($event)" [development]="development" ></plb-maps>
                     <form [formGroup]="addressForm" (ngSubmit)="save()">    
                         <div class="row">
                             <div class="col-md-12">
@@ -39,10 +39,10 @@
                                     <label>Address</label>
                                     <textarea 
                                         rows="3" 
-                                        [(ngModel)]="property.address"
                                         [ngClass]="{'control-label': addressForm.get('address').touched && ( addressForm.hasError('required',['address']) || addressForm.hasError('minlength',['address']))}" 
                                         formControlName="address" 
                                         class="form-control border-input" 
+                                        [(ngModel)]="development.address"
                                         placeholder="Address here..." ></textarea>
                                     
                                     <div *ngIf="addressForm.get('address').touched || submitted" style="margin-top: 5px">
@@ -67,7 +67,7 @@
                 </div>
               </div>
               <div class="tab-pane fade" [class.in]="step===1" [class.active]="step===1" role="tabpanel" id="stepper-step-2">
-                <plb-schemes [schemes]="schemes"></plb-schemes>
+                <plb-schemes [development]="development"></plb-schemes>
                 <ul class="list-inline pull-right">
                   <li>
                     <a class="btn btn-default prev-step" (click)="jumpToStep(step-1)">Back</a>

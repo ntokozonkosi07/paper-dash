@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Options } from 'ng5-slider';
 
 import { Scheme } from "./scheme.model";
 import { FormModelDTO } from "./form-group-dto.model";
+import { PropertyService } from '../../property.service';
 
 @Component({
     moduleId: module.id,
@@ -17,14 +19,24 @@ export class SchemeComponent implements OnInit {
     index: number;
     @Output()
     change= new EventEmitter<FormModelDTO>();
+    @Input()
+    address: string;
 
+    propertyTypes: any[];
     schemeForm: FormGroup;
+    options: Options = {
+        floor: 0,
+        ceil: 100000
+      };
 
     constructor(
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private propertyService: PropertyService
     ) { }
 
     ngOnInit(): void {
+
+        this.propertyTypes = this.propertyService.propertyTypes;
             
         this.schemeForm = this.formBuilder.group({
             address: [{ disabled: true }, [ Validators.required, Validators.minLength(3)]],

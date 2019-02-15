@@ -10,6 +10,7 @@ import { ToastsManager } from "ng2-toastr/ng2-toastr";
 import { LatLong } from "app/LatLong";
 import { DevelopmentsService } from "./developments.service";
 import { Scheme } from "./scheme.model";
+import { Development } from "./development.model";
 
 // declare var $:any;
 
@@ -22,18 +23,15 @@ import { Scheme } from "./scheme.model";
 export class DevelopmentsComponent implements OnInit {
 
     //property id
-    public id: number;
+    // public id: number;
     // steppers tracker
     public step: number = 1;
-
-    // state
-    public property: Property;
 
     addressForm: FormGroup;
     submitted: Boolean = false;
     public loading = false;
 
-    schemes: Scheme[];
+    development: Development;
 
     constructor(
         private route: ActivatedRoute,
@@ -44,18 +42,15 @@ export class DevelopmentsComponent implements OnInit {
         private developmentService: DevelopmentsService,
         private formBuilder: FormBuilder) { 
             this.toastr.setRootViewContainerRef(vcr);
-            this.property = {price: 0} as Property;
     }
 
     ngOnInit(): void {
-        this.id = parseInt(this.route.snapshot.paramMap.get("id")) || 0;
+        // this.id = parseInt(this.route.snapshot.paramMap.get("id")) || 0;
         this.addressForm = this.formBuilder.group({
             address: ['', [Validators.required, Validators.minLength(3)]]
         });
 
-        this.schemes = [
-            new Scheme(uuid.v4(),1,112,4124,2,1,1,1,15000000,2,2,"6 Invicta road, midrand, 1682","Enter each item on a new line, choose the amount of groups unders settings, and click the button to generate your randomized list. Don't like the first team? Just click again until you do.")
-        ];
+        this.development = new Development(uuid.v4(),'','',null,[] as Scheme[]);
     }
 
     jumpToStep = (step: number) => {
@@ -64,6 +59,7 @@ export class DevelopmentsComponent implements OnInit {
     }
 
     mapClick(latlong: LatLong){
+        debugger;
         this.getAddress(latlong);
     }
 
@@ -81,14 +77,16 @@ export class DevelopmentsComponent implements OnInit {
     }
 
     getAddress(latlong: LatLong){
-        this.loading = true;
+        // this.loading = true;
         this.developmentService.reverseGeocode(latlong)
             .subscribe((res:any) => {
+                debugger;
                 this.loading = false;
                 const { adminArea1, adminArea3, adminArea5, postalCode, street } = res.results[0].locations[0];
                 
-                this.property.address = `${adminArea1}, ${adminArea3}, ${adminArea5}, ${postalCode}, ${street}`;
+                this.development.address = `${adminArea1}, ${adminArea3}, ${adminArea5}, ${postalCode}, ${street}`;
             }, error => {
+                debugger;
                 this.loading = false;
                 this.toastr.warning('Could not get auto address');
             });

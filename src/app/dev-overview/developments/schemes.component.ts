@@ -6,6 +6,7 @@ import { Scheme } from "./scheme.model";
 import { SchemeComponent } from './scheme.component';
 import { FormGroup } from "@angular/forms";
 import { FormModelDTO } from "./form-group-dto.model";
+import { Development } from "./development.model";
 
 @Component({
     moduleId: module.id,
@@ -15,7 +16,10 @@ import { FormModelDTO } from "./form-group-dto.model";
 export class SchemesComponent implements OnInit, AfterViewInit {
     
     @Input()
-    schemes: Scheme[];    
+    development: Development;
+    
+    @ViewChildren(SchemeComponent)
+    schemeComponents: QueryList<SchemeComponent>;
 
     constructor(
         public toastr: ToastsManager
@@ -24,16 +28,17 @@ export class SchemesComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void { 
-        if(this.schemes.length > 0)
-            this.schemes[0].expanded = true;
+        if(this.development.schemes.length > 0)
+            this.development.schemes[0].expanded = true;
     } 
 
     ngAfterViewInit(): void {
-        //
+        this.schemeComponents.forEach((c,i) => this.formModelChange(new FormModelDTO(i, c.schemeForm)) );
     }
 
 
     newScheme(){
+        debugger;
         // if(this.schemes.length > 0)
         //     this.schemes.push({ price: 0} as Scheme);
         let scheme = new Scheme(uuid.v4(),0,0,0,0,0,0,0,0,0,0,'','');
@@ -41,24 +46,25 @@ export class SchemesComponent implements OnInit, AfterViewInit {
     }
 
     formModelChange(formData: FormModelDTO){
-        this.schemes[formData.index].valid = formData.formGroup.valid;
+        this.development.schemes[formData.index].valid = formData.formGroup.valid;
     }
 
     addAccordionPage(scheme: Scheme){
-        this.schemes.push(scheme);
-        this.schemes.forEach(s => s.expanded = false);
+
+        this.development.schemes.push(scheme);
+        this.development.schemes.forEach(s => s.expanded = false);
         
-        this.schemes[this.schemes.length - 1].expanded = true;
+        this.development.schemes[this.development.schemes.length - 1].expanded = true;
     }
 
     toggleAccordion(index){
-        this.schemes.forEach((s,i) => {
+        this.development.schemes.forEach((s,i) => {
             if(index !== i) 
                 s.expanded = !s.expanded;
             s.expanded = false;
         });
 
-        this.schemes[index].expanded = true;
+        this.development.schemes[index].expanded = true;
     }
 
     saveOrUpdate(schemes: Scheme[]){
