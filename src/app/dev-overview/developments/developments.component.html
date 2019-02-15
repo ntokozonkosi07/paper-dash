@@ -32,7 +32,30 @@
                 <div class="content">
                     <label>Plot location on the map</label>
                     <plb-maps [id]="id" (mapClick)="mapClick($event)" [development]="development" ></plb-maps>
-                    <form [formGroup]="addressForm" (ngSubmit)="save()">    
+                    <form [formGroup]="addressForm" (ngSubmit)="save()">   
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input 
+                                        rows="3" 
+                                        [ngClass]="{'control-label': addressForm.get('name').touched && ( addressForm.hasError('required',['name']) || addressForm.hasError('minlength',['name']))}" 
+                                        formControlName="name" 
+                                        class="form-control border-input" 
+                                        [(ngModel)]="development.name"
+                                        placeholder="Development Name" >
+                                    
+                                    <div *ngIf="addressForm.get('name').touched || submitted" style="margin-top: 5px">
+                                        <span class="alert alert-danger col-md-12" *ngIf="addressForm.hasError('required',['name'])">
+                                            This fields is required!
+                                        </span>
+                                        <span class="alert alert-danger col-md-12" *ngIf="addressForm.hasError('minlength',['name'])">
+                                            Minimun length is 3!
+                                        </span>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div> 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

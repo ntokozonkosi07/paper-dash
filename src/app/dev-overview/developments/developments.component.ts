@@ -25,7 +25,7 @@ export class DevelopmentsComponent implements OnInit {
     //property id
     // public id: number;
     // steppers tracker
-    public step: number = 1;
+    public step: number = 0;
 
     addressForm: FormGroup;
     submitted: Boolean = false;
@@ -47,6 +47,7 @@ export class DevelopmentsComponent implements OnInit {
     ngOnInit(): void {
         // this.id = parseInt(this.route.snapshot.paramMap.get("id")) || 0;
         this.addressForm = this.formBuilder.group({
+            name: ['', [Validators.required, Validators.minLength(3)]],
             address: ['', [Validators.required, Validators.minLength(3)]]
         });
 
