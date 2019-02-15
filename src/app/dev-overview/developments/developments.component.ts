@@ -2,12 +2,14 @@ import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
+import * as uuid from 'uuid';
 
 import { Property } from "app/property";
 import { PropertyService } from "app/property.service";
 import { ToastsManager } from "ng2-toastr/ng2-toastr";
 import { LatLong } from "app/LatLong";
 import { DevelopmentsService } from "./developments.service";
+import { Scheme } from "./scheme.model";
 
 // declare var $:any;
 
@@ -31,6 +33,8 @@ export class DevelopmentsComponent implements OnInit {
     submitted: Boolean = false;
     public loading = false;
 
+    schemes: Scheme[];
+
     constructor(
         private route: ActivatedRoute,
         private propertyService: PropertyService,
@@ -48,6 +52,10 @@ export class DevelopmentsComponent implements OnInit {
         this.addressForm = this.formBuilder.group({
             address: ['', [Validators.required, Validators.minLength(3)]]
         });
+
+        this.schemes = [
+            new Scheme(uuid.v4(),1,112,4124,2,1,1,1,15000000,2,2,"6 Invicta road, midrand, 1682","Enter each item on a new line, choose the amount of groups unders settings, and click the button to generate your randomized list. Don't like the first team? Just click again until you do.")
+        ];
     }
 
     jumpToStep = (step: number) => {

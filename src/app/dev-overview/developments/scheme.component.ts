@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Scheme } from "./scheme.model";
+import { FormModelDTO } from "./form-group-dto.model";
 
 @Component({
     moduleId: module.id,
@@ -11,11 +13,12 @@ export class SchemeComponent implements OnInit {
     
     @Input()
     scheme: Scheme;
+    @Input()
+    index: number;
+    @Output()
+    change= new EventEmitter<FormModelDTO>();
 
     schemeForm: FormGroup;
-
-    sample: Connect;
-    
 
     constructor(
         private formBuilder: FormBuilder
@@ -24,7 +27,7 @@ export class SchemeComponent implements OnInit {
     ngOnInit(): void {
             
         this.schemeForm = this.formBuilder.group({
-            address: ['', [ Validators.required, Validators.minLength(3)]],
+            address: [{ disabled: true }, [ Validators.required, Validators.minLength(3)]],
             propertyType: ['', [ Validators.required ]],
             erf: ['', [ Validators.required ]],
             bedroom: ['', [ Validators.required ]],
@@ -37,5 +40,7 @@ export class SchemeComponent implements OnInit {
         });
     }
 
-    
+    onChange(index: number, schemeForm: FormGroup){
+        this.change.emit(new FormModelDTO(index,schemeForm));
+    }
 }

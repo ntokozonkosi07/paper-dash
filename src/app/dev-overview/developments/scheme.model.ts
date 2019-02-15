@@ -2,7 +2,7 @@ import { SchemeMeta } from "./scheme-meta.model";
 
 export class Scheme extends SchemeMeta{
     constructor(        
-        public id: number,
+        public id: string,
         public propertyType: number,
         public size: number,
         public erf: number,
@@ -16,7 +16,7 @@ export class Scheme extends SchemeMeta{
         public address: string,
         public description: string,
     ) { 
-        super(true);
+        super(true,false);
     }
     
 }
