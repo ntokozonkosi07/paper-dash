@@ -16,7 +16,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapse{{i}}" (click)="toggleAccordion(i)">
-                            <label [ngClass]="{'text-success': scheme.valid }">Scheme {{ i + 1 }}</label>                          
+                            <label [ngClass]="{'text-success': scheme.valid }">{{ scheme.bedroom || 0}} Bedroom(s)</label>                          
                         </a>
                     </h4>
                 </div>
