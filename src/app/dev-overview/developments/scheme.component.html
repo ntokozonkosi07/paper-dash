@@ -21,7 +21,7 @@
         <div class="col-md-4">
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('propertyType').touched && schemeForm.hasError('required', ['propertyType'])}">
                 <label class="control-label">Property Type</label>
-                <select class="form-control border-input" formControlName="propertyType" [(ngModel)]="scheme.propertyType">
+                <select class="form-control border-input" disabled="!enabled" formControlName="propertyType" [(ngModel)]="scheme.propertyType">
                     <option class="dropdown-select" disabled [selected]='true' [value]="undefined">Select propertyType</option>
                     <option class="dropdown-select" [value]="p.id" *ngFor="let p of propertyTypes">{{p.name}}</option>
                 </select>
@@ -36,6 +36,7 @@
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('erf').touched && schemeForm.hasError('required', ['erf'])}">
                 <label>ERF Number</label>
                 <input type="number" 
+                    disabled="!enabled"
                     class="form-control border-input" 
                     placeholder="ERF Number"
                     name="erf"
@@ -56,6 +57,7 @@
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('erf').touched && schemeForm.hasError('required', ['bedroom'])}">
                 <label>Bedroom</label>
                 <input type="number" 
+                    disabled="!enabled"
                     class="form-control border-input" 
                     placeholder="Number of bedrooms" 
                     name="bedroom"
@@ -73,6 +75,7 @@
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('erf').touched && schemeForm.hasError('required', ['kitchen'])}">
                 <label>Kitchen</label>
                 <input type="number" 
+                    disabled="!enabled"
                     class="form-control border-input" 
                     placeholder="Number of Kitchens" 
                     name="kitchen"
@@ -90,6 +93,7 @@
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('lounge').touched && schemeForm.hasError('required', ['lounge'])}">
                 <label>Lounge</label>
                 <input type="number" 
+                    disabled="!enabled"
                     class="form-control border-input" 
                     placeholder="Number of Kitchens" 
                     name="lounge"
@@ -109,6 +113,7 @@
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('office').touched && schemeForm.hasError('required', ['office'])}">
                 <label>Office / Study Room</label>
                 <input type="number" 
+                    disabled="!enabled"
                     class="form-control border-input" 
                     placeholder="Number of Kitchens" 
                     name="office"
@@ -126,6 +131,7 @@
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('garage').touched && schemeForm.hasError('required', ['garage'])}">
                 <label>Garage</label>
                 <input type="number" 
+                    disabled="!enabled"
                     class="form-control border-input" 
                     placeholder="Number of Garages" 
                     name="garage"
@@ -143,6 +149,7 @@
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('carport').touched && schemeForm.hasError('required', ['carport'])}">
                 <label>Carport</label>
                 <input type="number" 
+                    disabled="!enabled"
                     class="form-control border-input" 
                     placeholder="Number of Carports" 
                     name="carport"
@@ -170,6 +177,7 @@
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('description').touched && schemeForm.hasError('required', ['description'])}">
                 <label>Description</label>
                 <textarea rows="5" 
+                    disabled="!enabled"
                     class="form-control border-input" 
                     placeholder="Scheme Scription" 
                     name="description"

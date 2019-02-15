@@ -60,12 +60,10 @@ export class DevelopmentsComponent implements OnInit {
     }
 
     jumpToStep = (step: number) => {
-        debugger;
         this.step = step;
     }
 
     mapClick(latlong: LatLong){
-        debugger;
         this.getAddress(latlong);
     }
 
@@ -102,13 +100,11 @@ export class DevelopmentsComponent implements OnInit {
         // this.loading = true;
         this.developmentService.reverseGeocode(latlong)
             .subscribe((res:any) => {
-                debugger;
                 this.loading = false;
                 const { adminArea1, adminArea3, adminArea5, postalCode, street } = res.results[0].locations[0];
                 
                 this.development.address = `${adminArea1}, ${adminArea3}, ${adminArea5}, ${postalCode}, ${street}`;
             }, error => {
-                debugger;
                 this.loading = false;
                 this.toastr.warning('Could not get auto address');
             });

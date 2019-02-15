@@ -21,6 +21,8 @@ export class SchemeComponent implements OnInit {
     change= new EventEmitter<FormModelDTO>();
     @Input()
     address: string;
+    @Input()
+    enabled: boolean = true;
 
     propertyTypes: any[];
     schemeForm: FormGroup;
@@ -35,6 +37,9 @@ export class SchemeComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+
+        if(!this.enabled)
+            this.options.disabled = !this.enabled;
 
         this.propertyTypes = this.propertyService.propertyTypes;
             
