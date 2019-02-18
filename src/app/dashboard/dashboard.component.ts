@@ -51,21 +51,27 @@ export class DashboardComponent implements OnInit{
 
         var data = {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          series: [
-            [542, 543, 520, 680, 653, 753, 326, 434, 568, 610, 756, 895],
-            [230, 293, 380, 480, 503, 553, 600, 664, 698, 710, 736, 795]
+            series: [
+            [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8],
+            [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4],
+            [3, 5, 8, 2, 1, 6, 4, 9, 7, 4, 3, 6]
           ]
         };
 
         var options = {
-            seriesBarDistance: 10,
-            axisX: {
-                showGrid: false
-            },
+            seriesBarDistance: 15,
             height: "245px"
         };
 
         var responsiveOptions: any[] = [
+          ['screen and (min-width: 641px) and (max-width: 1024px)', {
+            seriesBarDistance: 10,
+            axisX: {
+              labelInterpolationFnc: function (value) {
+                return value;
+              }
+            }
+          }],
           ['screen and (max-width: 640px)', {
             seriesBarDistance: 5,
             axisX: {
@@ -76,30 +82,6 @@ export class DashboardComponent implements OnInit{
           }]
         ];
 
-        new Chartist.Line('#chartActivity', data, options, responsiveOptions);
-
-        var dataPreferences = {
-            series: [
-                [25, 30, 20, 25]
-            ]
-        };
-
-        var optionsPreferences = {
-            donut: true,
-            donutWidth: 40,
-            startAngle: 0,
-            total: 100,
-            showLabel: false,
-            axisX: {
-                showGrid: false
-            }
-        };
-
-        new Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
-
-        new Chartist.Pie('#chartPreferences', {
-          labels: ['62%','32%','6%'],
-          series: [62, 32, 6]
-        });
+        new Chartist.Bar('#chartActivity', data, options, responsiveOptions);
     }
 }

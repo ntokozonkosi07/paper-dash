@@ -30,7 +30,7 @@ const ROUTES: Routes = [
         ReactiveFormsModule,
         MapsModule,
         HttpClientModule,
-        Ng5SliderModule,
+        // Ng5SliderModule,
         AngularFontAwesomeModule,
         // GalleryModule,
         NgxLoadingModule.forRoot({}),
