@@ -70,6 +70,7 @@ export class DevelopmentsComponent implements OnInit {
     save(){
         try{
             this.submitted = true;
+            
 
             if(this.addressForm.invalid)
                 throw new Error('Please check the fields for potential mistakes!')
@@ -111,28 +112,16 @@ export class DevelopmentsComponent implements OnInit {
     }
 
     //#region saveOrUpdate
-    // saveOrUpdate(property, formValidity){
-    //     try{
-    //         debugger;
-    //         if(!formValidity)
-    //          throw new Error('Please complete the form.');
+    saveOrUpdate(development: Development){
+        try{            
 
-    //          if(this.id !== 0){
-    //             let index = this.propertyService.properties.findIndex(item => item.id === this.id);
-    //             this.propertyService.properties[ index ] = property;
-    //          } else {
-    //             property.id = this.propertyService.properties.length + 1;
-    //             this.propertyService.properties.push(property);
-    //          }
+            this.toastr.success('Property has been saved!','Success');
 
+             setTimeout(_ => this.router.navigateByUrl('developments'), 700);
              
-    //          this.toastr.success('Property has been saved!','Success');
-
-    //          setTimeout(_ => this.router.navigateByUrl('properties'), 700);
-             
-    //     }catch(e){
-    //         this.toastr.warning(e.message,'Warning');
-    //     }
-    // }
+        }catch(e){
+            this.toastr.warning(e.message,'Warning');
+        }
+    }
     //#endregion
 }

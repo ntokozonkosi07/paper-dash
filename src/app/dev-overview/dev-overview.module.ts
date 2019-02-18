@@ -6,6 +6,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { MapsModule } from "app/maps/maps.module";
 import { HttpClientModule } from '@angular/common/http';
 import { Ng5SliderModule } from 'ng5-slider';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { DevOverviewComponent } from "./dev-overview.component";
 import { PropertyService } from "app/property.service";
@@ -29,7 +30,8 @@ const ROUTES: Routes = [
         ReactiveFormsModule,
         MapsModule,
         HttpClientModule,
-        // Ng5SliderModule,
+        Ng5SliderModule,
+        AngularFontAwesomeModule,
         // GalleryModule,
         NgxLoadingModule.forRoot({}),
         ToastModule.forRoot(),

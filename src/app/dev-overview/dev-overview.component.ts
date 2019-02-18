@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { PropertyService } from 'app/property.service';
 import { Property } from 'app/property';
+import { Development } from './developments/development.model';
 
 declare interface TableData {
     headerRow: string[];
@@ -15,13 +16,14 @@ declare interface TableData {
 })
 
 export class DevOverviewComponent implements OnInit{
-    public properties: Property[];
+    public developments: Development[];
     public fields: any [];
 
-    constructor(private propertyService: PropertyService) {this.properties = [];}
+    constructor(private propertyService: PropertyService) {this.developments = [];}
     
     ngOnInit(){
-        this.fields = ['erf','street'];
-        this.properties = this.propertyService.properties;
+        this.fields = ['street'];
+        this.developments = this.propertyService.developments;
+        debugger;
     }
 }

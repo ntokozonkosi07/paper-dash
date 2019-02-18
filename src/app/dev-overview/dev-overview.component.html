@@ -16,12 +16,22 @@
                         <thead>
                             <tr>
                                 <th *ngFor="let field of fields">{{ field }}</th>
+                                <th>Development</th>
+                                <th>Price</th>
+                                <th>address</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let row of properties">
-                                <td><a routerLink="development/{{ row.id }}" routerLinkActive="router-link-active">{{ row.erf }}</a></td>
-                                <td>{{ row.address }}</td>
+                        <tbody *ngFor="let dev of developments; let d = index;">
+                            <tr *ngFor="let sch of dev.schemes; let s = index;">
+                                <td>
+                                    <a routerLink="development/{{ dev.id }}" routerLinkActive="router-link-active">
+                                        {{ sch.bedroom }} <fa name="bed"></fa>
+                                        {{ sch.kitchen }} <fa name="shower"></fa>
+                                    </a>
+                                </td>
+                                <td>{{ dev.name }}</td>
+                                <td>{{ sch.price }}</td>
+                                <td>{{ dev.address }}</td>
                             </tr>
                         </tbody>
                     </table>
