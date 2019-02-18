@@ -10,9 +10,9 @@ import { Scheme } from "./dev-overview/developments/scheme.model";
 @Injectable() 
 export class PropertyService{
     
-    developments: Development[];
-    provinces: any[];
-    propertyTypes: any[];
+    private developments: Development[];
+    private provinces: any[];
+    private propertyTypes: any[];
 
     constructor() {
 
@@ -43,5 +43,13 @@ export class PropertyService{
             // new Property(2,1,45145,254542,2,1,1,0,0,600404,1,2,1,"5th Rd, Carlswald, Midrand, 1686, South Africa",new LatLong('-25.980576635324983', '28.115435242652897')),
             // new Property(3,1,45145,65565,2,1,1,0,0,400340,1,2,1,"74 Albertyn St, Vorna Valley, Midrand, 1686, South Africa",new LatLong('-25.99937247308598', '28.100055456161503'))
         ];
+    }
+
+    getDevelopments(){
+        return this.developments;
+    }
+
+    getPropertyTypes(){
+        return this.propertyTypes;
     }
 }

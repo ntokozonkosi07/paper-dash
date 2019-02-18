@@ -41,7 +41,7 @@ export class SchemeComponent implements OnInit {
         if(!this.enabled)
             this.options.disabled = !this.enabled;
 
-        this.propertyTypes = this.propertyService.propertyTypes;
+        this.propertyTypes = this.propertyService.getPropertyTypes();
             
         this.schemeForm = this.formBuilder.group({
             address: [{ disabled: true }, [ Validators.required, Validators.minLength(3)]],

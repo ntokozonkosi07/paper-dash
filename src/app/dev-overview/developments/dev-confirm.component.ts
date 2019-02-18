@@ -22,6 +22,6 @@ export class DevConfirmComponent implements OnInit {
     ngOnInit(): void {
         const { propertyService } = this;
 
-        this.propertyTypes = propertyService.propertyTypes;
+        this.propertyTypes = propertyService.getPropertyTypes();
     }
 }

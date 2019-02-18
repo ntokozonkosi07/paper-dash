@@ -49,7 +49,7 @@ export class DevelopmentsComponent implements OnInit {
 
         this.development = paramMap.get('id') == null 
             ? new Development(uuid.v4(), '','',new LatLong('0','0'),[] as Scheme[])
-            : this.propertyService.developments.find(item => item.id == paramMap.get('id'));
+            : this.propertyService.getDevelopments().find(item => item.id == paramMap.get('id'));
 
         this.addressForm = this.formBuilder.group({
             name: ['', [Validators.required, Validators.minLength(3)]],
@@ -113,13 +113,13 @@ export class DevelopmentsComponent implements OnInit {
     //#region saveOrUpdate
     saveOrUpdate(dev: Development){
         try{
-            const { developments } = this.propertyService;
+            const { propertyService } = this;
 
-            let index = developments.findIndex(item => item.id === dev.id);
+            let index = propertyService.getDevelopments().findIndex(item => item.id === dev.id);
             if(index > -1)
-                this.propertyService.developments[index] = dev;
+                this.propertyService.getDevelopments()[index] = dev;
             else
-                this.propertyService.developments.push(dev);
+                this.propertyService.getDevelopments().push(dev);
 
             this.toastr.success('Property has been saved!','Success');
 
