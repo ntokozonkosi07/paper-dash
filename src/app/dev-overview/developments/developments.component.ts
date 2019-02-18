@@ -45,18 +45,16 @@ export class DevelopmentsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.id = parseInt(this.route.snapshot.paramMap.get("id")) || 0;
+        const { paramMap } = this.route.snapshot;
+
+        this.development = paramMap.get('id') == null 
+            ? new Development(uuid.v4(), '','',new LatLong('0','0'),[] as Scheme[])
+            : this.propertyService.developments.find(item => item.id == paramMap.get('id'));
+
         this.addressForm = this.formBuilder.group({
             name: ['', [Validators.required, Validators.minLength(3)]],
             address: ['', [Validators.required, Validators.minLength(3)]]
         });
-
-        this.development = new Development(uuid.v4(),'Polo Fields','NZ, Wellington, Wellington, 6011, Revans Street',
-            new LatLong('50','50'),[
-                new Scheme(uuid.v4(),1,104,778545,3,1,1,0,400000,1,1,'NZ, Wellington, Wellington, 6011, Revans Street','very cozy 3 bedrooom'),
-                new Scheme(uuid.v4(),1,104,778545,2,1,1,0,500000,1,1,'NZ, Wellington, Wellington, 6011, Revans Street','very cozy 2 bedrooom'),
-                new Scheme(uuid.v4(),2,104,778545,1,1,1,0,700000,1,1,'NZ, Wellington, Wellington, 6011, Revans Street','very cozy 1 bedrooom')
-            ]);
     }
 
     jumpToStep = (step: number) => {
@@ -98,6 +96,7 @@ export class DevelopmentsComponent implements OnInit {
     }
 
     getAddress(latlong: LatLong){
+        debugger;
         // this.loading = true;
         this.developmentService.reverseGeocode(latlong)
             .subscribe((res:any) => {
@@ -112,8 +111,15 @@ export class DevelopmentsComponent implements OnInit {
     }
 
     //#region saveOrUpdate
-    saveOrUpdate(development: Development){
-        try{            
+    saveOrUpdate(dev: Development){
+        try{
+            const { developments } = this.propertyService;
+
+            let index = developments.findIndex(item => item.id === dev.id);
+            if(index > -1)
+                this.propertyService.developments[index] = dev;
+            else
+                this.propertyService.developments.push(dev);
 
             this.toastr.success('Property has been saved!','Success');
 

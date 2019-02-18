@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group" [ngClass]="{'has-error': schemeForm.get('propertyType').touched && schemeForm.hasError('required', ['propertyType'])}">
-                <label class="control-label">Property Type - {{!enabled}}</label>
+                <label class="control-label">Property Type</label>
                 <select class="form-control border-input" [attr.disabled]="!enabled ? 'disabled': null" formControlName="propertyType" [(ngModel)]="scheme.propertyType">
                     <option class="dropdown-select" disabled [selected]='true' [value]="undefined">Select propertyType</option>
                     <option class="dropdown-select" [value]="p.id" *ngFor="let p of propertyTypes">{{p.name}}</option>
@@ -168,7 +168,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>Price</label>
-                <!-- <ng5-slider [(value)]="scheme.price" [options]="options"></ng5-slider> -->
+                <ng5-slider [(value)]="scheme.price" [options]="options"></ng5-slider>
             </div>
         </div>
     </div>

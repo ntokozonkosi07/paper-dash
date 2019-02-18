@@ -35,7 +35,7 @@ export class PropertyService{
         this.developments = [ 
             new Development(uuid.v4(),'Polo Fields', '74 Albertyn St, Vorna Valley, Midrand, 1686, South Africa',new LatLong('-25.99937247308598', '28.100055456161503'),
             [
-                new Scheme(uuid.v4(),1,104,54124,3,1,1,0,500000,2,1,'','Clean properties'),
+                new Scheme(uuid.v4(),1,104,54124,3,1,1,0,500000,3,1,'','Clean properties'),
                 new Scheme(uuid.v4(),1,104,54125,2,1,1,0,650000,2,1,'','Cool properties'),
                 new Scheme(uuid.v4(),1,104,54125,2,1,1,0,850000,1,1,'','Nice properties')
             ])
