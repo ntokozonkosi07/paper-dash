@@ -37,7 +37,7 @@ export class SchemeComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-
+        debugger;
         if(!this.enabled)
             this.options.disabled = !this.enabled;
 

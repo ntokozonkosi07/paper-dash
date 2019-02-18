@@ -25,7 +25,7 @@ export class DevelopmentsComponent implements OnInit {
     //property id
     // public id: number;
     // steppers tracker
-    public step: number = 2;
+    public step: number = 0;
 
     addressForm: FormGroup;
     submitted: Boolean = false;
