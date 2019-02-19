@@ -1,0 +1,62 @@
+<div class="content">
+    <form>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Development Name</label>
+                        <div>
+                            {{development.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Address</label>
+                        <div>
+                            {{development.address}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Description</label>
+                        <div>
+                            {{ development.description || 'No description' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="row" *ngIf="development.schemes.length === 0">
+                        <div class="text-center" >
+                            <h3 style="color:#a29f9fa6">This development has no schemes! Please click the <button class="btn btn-default" (click)="newScheme()">New</button> button to add.</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-group" *ngFor="let scheme of development.schemes; let i = index;">
+                        <div class="panel panel-default" >
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse{{i}}" (click)="toggleAccordion(i)">
+                                        <label [ngClass]="{'text-success': scheme.valid }">{{ scheme.bedroom || 0}} Bedroom(s)</label>                          
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse{{i}}" class="panel-collapse collapse in" >
+                                <div class="panel-body">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="content">
+                                            <plb-scheme [scheme]="scheme" [index]="i" [address]="development.address" [enabled]="false" (change)="formModelChange($event)"></plb-scheme>
+                                        </div>                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>
