@@ -12,7 +12,7 @@ declare interface TableData {
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
-    templateUrl: 'dev-overview.component.html'
+    templateUrl: 'approval-dev-overview.component.html'
 })
 
 export class ApprovalDevOverviewComponent implements OnInit{

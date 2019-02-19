@@ -15,7 +15,8 @@ export const AppRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'user', component: UserComponent },
     { path: 'developments', loadChildren: './dev-overview/dev-overview.module#DevOverviewModule' },
-    { path: 'dev-approval', component: ApprovalDashComponent }
+    { path: 'dev-approval', component: ApprovalDashComponent },
+    { path: 'devs-approval', loadChildren: './approval-dev-overview/approval-dev-overview.module#ApprovalDevOverviewModule' },
     // { path: 'typography', component: TypographyComponent },
     // { path: 'icons', component: IconsComponent },
     // { path: 'maps', component: MapsComponent },
