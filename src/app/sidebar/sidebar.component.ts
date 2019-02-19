@@ -14,6 +14,7 @@ export const ROUTES: RouteInfo[] = [
     { path: 'dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
     { path: 'user', title: 'User Profile',  icon:'ti-user', class: 'active-pro' },
     { path: 'developments', title: 'Developments',  icon:'ti-view-list-alt', class: '' },
+    { path: 'dev-approval', title: 'Approval Dash',  icon:'ti-view-list-alt', class: '' },
     // { path: 'typography', title: 'Typography',  icon:'ti-text', class: '' },
     // { path: 'icons', title: 'Icons',  icon:'ti-pencil-alt2', class: '' },
     // { path: 'maps', title: 'Maps',  icon:'ti-map', class: '' },
@@ -33,7 +34,7 @@ export class SidebarComponent implements OnInit {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
     isNotMobileMenu(){
-        if($(window).width() > 991){
+        if($(window).width() > 800){
             return false;
         }
         return true;

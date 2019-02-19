@@ -20,6 +20,7 @@ import { MapsComponent }   from './maps/maps.component';
 import { NotificationsComponent }   from './notifications/notifications.component';
 import { UpgradeComponent }   from './upgrade/upgrade.component';
 import { PropertyService } from './property.service';
+import { ApprovalDashModule } from './approval-dash/approval-dash.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PropertyService } from './property.service';
     // UpgradeComponent
   ],
   imports: [
+    ApprovalDashModule,
     BrowserModule,
     RouterModule.forRoot(AppRoutes),
     SidebarModule,
