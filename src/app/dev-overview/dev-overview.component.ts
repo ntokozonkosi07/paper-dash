@@ -24,6 +24,5 @@ export class DevOverviewComponent implements OnInit{
     ngOnInit(){
         this.fields = ['street'];
         this.developments = this.propertyService.getDevelopments();
-        debugger;
     }
 }
